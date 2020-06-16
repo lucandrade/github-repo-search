@@ -1,0 +1,11 @@
+@import "~reset-css";
+
+html, body {
+  background: #0F2027;
+  background: -webkit-linear-gradient(to top, #0F2027, #203A43, #2C5364);
+  background: linear-gradient(to top, #0F2027, #203A43, #2C5364);
+}
+
+#root {
+  height: 100vh;
+}
