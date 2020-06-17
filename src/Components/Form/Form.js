@@ -1,4 +1,5 @@
 import React from "react";
+import SearchInput from "./SearchInput";
 
 export default function Form() {
   const onSubmit = e => {
@@ -9,8 +10,7 @@ export default function Form() {
   return (
     <form onSubmit={onSubmit}>
       <div className="form-input search">
-        <label htmlFor="search">Search</label>
-        <input type="text" id="search" placeholder={'Type "/" to search'} />
+        <SearchInput onSearch={query => console.log('e', query)} />
       </div>
     </form>
   );
