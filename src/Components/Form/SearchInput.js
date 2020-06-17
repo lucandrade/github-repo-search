@@ -1,19 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 
 const SECONDS_TO_WAIT = 1000;
 
 export default function SearchInput({ onSearch }) {
   const [value, setValue] = useState('');
+  const inputRef = createRef();
+  const fakeRef = useRef(true);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => onSearch(value), SECONDS_TO_WAIT);
-    return () => clearTimeout(timeoutId);
+    const onKeyDown = (e) => {
+      // Focus the input when "/" key is pressed
+      if (e.keyCode === 191 && inputRef.current) {
+        inputRef.current.focus();
+        e.preventDefault();
+      }
+    };
+
+    document.body.addEventListener('keydown', onKeyDown);
+
+    return () => document.body.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (fakeRef.current) {
+      fakeRef.current = false;
+    } else {
+      // Runs the search after 1 second the input is changed
+      const timeoutId = setTimeout(
+        () => onSearch(value),
+        SECONDS_TO_WAIT
+      );
+      return () => clearTimeout(timeoutId);
+    }
   }, [value]);
 
   return (
     <div className="form-input">
       <label htmlFor="search">Search</label>
       <input
+        ref={inputRef}
         type="text"
         id="search"
         value={value}

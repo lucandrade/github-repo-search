@@ -27,7 +27,13 @@ it("Renders the input", () => {
     render(<SearchInput onSearch={onSearch} />, container);
   });
 
+  expect(document.hasFocus()).toBe(false);
+
   const input = container.querySelector('input');
+
+  fireEvent.keyDown(container, { keyCode: 191 });
+
+  expect(document.hasFocus()).toBe(true);
 
   fireEvent.change(input, { target: { value: 'the-value' }});
 
