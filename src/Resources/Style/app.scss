@@ -1,17 +1,18 @@
 @import "~reset-css";
-@import "form.scss";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+@import "form.scss", "listing.scss";
 
 html, body {
   background: #0F2027;
-  background: -webkit-linear-gradient(to top, #0F2027, #203A43, #2C5364);
-  background: linear-gradient(to top, #0F2027, #203A43, #2C5364);
+  background: -webkit-linear-gradient(to top, #0F2027, #203A43, #2C5364) fixed;
+  background: linear-gradient(to top, #0F2027, #203A43, #2C5364) fixed;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
 }
 
 #root {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
