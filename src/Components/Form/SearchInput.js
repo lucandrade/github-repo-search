@@ -22,6 +22,7 @@ export default function SearchInput({ onSearch }) {
   }, []);
 
   useEffect(() => {
+    // Do not run when it's mounted
     if (fakeRef.current) {
       fakeRef.current = false;
     } else {
@@ -43,7 +44,7 @@ export default function SearchInput({ onSearch }) {
         id="search"
         value={value}
         onChange={e => setValue(e.target.value)}
-        placeholder={'Type "/" to search'} />
+        placeholder={'Type "/"'} />
     </div>
   );
 }
