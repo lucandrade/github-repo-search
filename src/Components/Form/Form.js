@@ -17,6 +17,17 @@ const SORT_OPTIONS = [
   },
 ];
 
+const ORDER_OPTIONS = [
+  {
+    value: 'asc',
+    label: 'Ascending'
+  },
+  {
+    value: 'desc',
+    label: 'Descending'
+  },
+];
+
 export default function Form() {
   const onSubmit = e => {
     e.preventDefault();
@@ -26,7 +37,16 @@ export default function Form() {
   return (
     <form onSubmit={onSubmit}>
       <SearchInput onSearch={query => console.log('e', query)} />
-      <Select id="sort" label="Sort" options={SORT_OPTIONS} onSelect={option => console.log('option', option)} />
+      <Select
+        id="sort"
+        label="Sort"
+        options={SORT_OPTIONS}
+        onSelect={option => console.log('option', option)} />
+      <Select
+        id="order"
+        label="Order"
+        options={ORDER_OPTIONS}
+        onSelect={option => console.log('option', option)} />
     </form>
   );
 }
