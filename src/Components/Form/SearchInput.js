@@ -35,7 +35,7 @@ export default function SearchInput({ onSearch }) {
   }, [value]);
 
   return (
-    <div className="form-input">
+    <div className="form-input search">
       <label htmlFor="search">Search</label>
       <input
         ref={inputRef}
