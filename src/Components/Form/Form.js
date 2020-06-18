@@ -1,5 +1,21 @@
 import React from "react";
 import SearchInput from "./SearchInput";
+import Select from "./Select";
+
+const SORT_OPTIONS = [
+  {
+    value: '',
+    label: 'Best Match'
+  },
+  {
+    value: 'stars',
+    label: 'Stars'
+  },
+  {
+    value: 'forks',
+    label: 'Forks'
+  },
+];
 
 export default function Form() {
   const onSubmit = e => {
@@ -9,9 +25,8 @@ export default function Form() {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="form-input search">
-        <SearchInput onSearch={query => console.log('e', query)} />
-      </div>
+      <SearchInput onSearch={query => console.log('e', query)} />
+      <Select id="sort" label="Sort" options={SORT_OPTIONS} onSelect={option => console.log('option', option)} />
     </form>
   );
 }
