@@ -19,7 +19,7 @@ export default function SearchInput({ onSearch }) {
     document.body.addEventListener('keydown', onKeyDown);
 
     return () => document.body.removeEventListener('keydown', onKeyDown);
-  }, []);
+  }, [inputRef]);
 
   useEffect(() => {
     // Do not run when it's mounted
@@ -33,7 +33,7 @@ export default function SearchInput({ onSearch }) {
       );
       return () => clearTimeout(timeoutId);
     }
-  }, [value]);
+  }, [value, onSearch]);
 
   return (
     <div className="form-input search">
