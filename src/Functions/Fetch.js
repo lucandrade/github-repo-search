@@ -2,9 +2,6 @@ import Axios from 'axios';
 
 import { ITEMS_PER_PAGE } from "../Constants";
 
-Axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-Axios.defaults.headers.post['Access-Control-Allow-Headers'] = 'X-Requested-With';
-
 const instance = Axios.create({
   baseURL: 'https://api.github.com/search/repositories',
 });
