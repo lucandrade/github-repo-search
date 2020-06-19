@@ -1,13 +1,11 @@
 @import "~reset-css";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
-@import "form.scss", "listing.scss";
+@import "variables.scss", "form.scss", "listing.scss";
 
 html, body {
-  background: #0F2027;
-  background: -webkit-linear-gradient(to top, #0F2027, #203A43, #2C5364) fixed;
-  background: linear-gradient(to top, #0F2027, #203A43, #2C5364) fixed;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  background: $bg-color;
+  background: $bg;
+  font: $font;
 }
 
 #root {
@@ -17,7 +15,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  color: white;
+  color: $color;
 }
 
 .app {
@@ -27,16 +25,16 @@ html, body {
   flex-direction: column;
 
   h1 {
-    margin: 2rem auto;
+    margin: $section-margin auto;
     font-size: 2rem;
     font-weight: bold;
   }
 
   .loading {
-    margin-top: 2rem;
+    margin-top: $section-margin;
     padding: 1rem;
-    border-radius: 8px;
-    background: #0F2027;
+    border-radius: $border-radius;
+    background: $bg-color;
     font-size: 1.3rem;
     text-align: center;
   }
