@@ -8,6 +8,7 @@ export default function App() {
     <>
       <div className="app">
         <Form onSearch={options => console.log('op', options)} />
+        <div className="loading">Loading</div>
         <div className="list">
           <Repository
             avatarUrl={"https://avatars2.githubusercontent.com/u/96857?v=4"}
