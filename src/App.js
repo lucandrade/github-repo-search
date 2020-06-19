@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Fetch from "./Functions/Fetch";
 import Form from "./Components/Form/Form";
 import Repository from "./Components/Listing/Repository";
+import TransformApiResult from "./Functions/TransformApiResult";
 
 export default function App() {
   const [repos, setRepos] = useState([]);
@@ -16,8 +17,8 @@ export default function App() {
     } else {
       const runFetch = async () => {
         setFetching(true);
-        const result = await Fetch(options);
-        setRepos(result);
+        const { repos } = TransformApiResult(await Fetch(options));
+        setRepos(repos);
         setFetching(false);
       };
 

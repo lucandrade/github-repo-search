@@ -18,19 +18,12 @@ const fetch = async ({ query, sort, order }) => {
     });
 
     if (data && data.items) {
-      return data.items.map(i => ({
-        name: i.name,
-        description: i.description,
-        url: i.html_url,
-        avatarUrl: i.owner && i.owner.avatar_url ? i.owner.avatar_url : null,
-        stars: i.stargazers_count,
-        forks: i.forks,
-      }));
+      return data;
     }
 
-    return [];
+    return {};
   } catch (e) {
-    return [];
+    return {};
   }
 };
 
