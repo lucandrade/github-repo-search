@@ -21,7 +21,7 @@ export default function Form({ onSearch }) {
 
       runSearch();
     }
-  }, [searching]);
+  }, [searching, query, sort, order, onSearch]);
 
   useEffect(() => {
     // Do not run when it's mounted

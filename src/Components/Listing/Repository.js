@@ -7,7 +7,7 @@ export default function Repository({ stars, forks, avatarUrl, url, name, descrip
         <img src={avatarUrl} alt="Avatar" />
       </div>
       <div className="details">
-        <a href={url} target="_blank" className="title">{name}</a>
+        <a href={url} rel="noopener noreferrer" target="_blank" className="title">{name}</a>
         <span>Stars: {stars}</span>
         <span>Forks: {forks}</span>
         <p>{description}</p>
