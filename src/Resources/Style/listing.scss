@@ -9,6 +9,7 @@
 
   .item {
     display: flex;
+    align-items: center;
     padding: 1rem;
 
     &:not(:last-child) {

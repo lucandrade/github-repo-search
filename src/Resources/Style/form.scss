@@ -4,6 +4,11 @@ form {
   padding: 1rem 1rem 1.2rem;
   background: $bg-color;
 
+  @media (max-width: $breakpoint) {
+    flex-direction: column;
+    padding-bottom: 1.5rem;
+  }
+
   .form-input {
     display: flex;
     flex-direction: column;
@@ -15,6 +20,11 @@ form {
 
     &:not(:first-child) {
       padding-left: 1rem;
+
+      @media (max-width: $breakpoint) {
+        padding-left: 0;
+        margin-top: 1rem;
+      }
     }
 
     label {

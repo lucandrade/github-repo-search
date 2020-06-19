@@ -24,6 +24,10 @@ html, body {
   display: flex;
   flex-direction: column;
 
+  @media (max-width: $breakpoint) {
+    width: 90vw;
+  }
+
   h1 {
     margin: $section-margin auto;
     font-size: 2rem;
