@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Fetch from "./Functions/Fetch";
 import Form from "./Components/Form/Form";
@@ -12,28 +12,12 @@ export default function App() {
   const [repos, setRepos] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [options, setOptions] = useState({});
-  const fakeRef = useRef(true);
 
   useEffect(() => {
-    if (fakeRef.current) {
-      fakeRef.current = false;
-    } else {
-      if (options.query && page === 1) {
-        const runFetch = async () => {
-          setFetching(true);
-          const { repos, pages } = TransformApiResult(await Fetch(options));
-          setPages(pages);
-          setRepos(repos);
-          setFetching(false);
-        };
-        runFetch();
-      }
-
-      if (options.query && page !== 1) {
-        setPage(1);
-      }
+    if (options.query) {
+      setPage(1);
     }
-  }, [options, fakeRef]);
+  }, [options]);
 
   useEffect(() => {
     if (options.query) {
@@ -47,7 +31,7 @@ export default function App() {
 
       runFetch();
     }
-  }, [page]);
+  }, [options, page]);
 
   return (
     <>
