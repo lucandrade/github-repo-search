@@ -15,6 +15,8 @@ export default function Form({ disabled, onSearch }) {
     // Do not run when it's mounted
     if (fakeRef.current) {
       fakeRef.current = false;
+    } else if (!query) {
+      searchRef.current.focus();
     } else {
       onSearch({ query, sort, order });
     }
