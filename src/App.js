@@ -44,7 +44,7 @@ export default function App() {
   return (
     <>
       <div className="app">
-        <h1>GitHub Repository Listing</h1>
+        <h1>GitHub Repository Search</h1>
         <Form disabled={fetching} onSearch={setOptions} />
         {fetching && <div className="loading">Loading</div>}
         {failed && <div className="loading">Error fetching github repositories</div>}
