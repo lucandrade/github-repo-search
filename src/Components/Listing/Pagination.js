@@ -1,7 +1,7 @@
 import React from "react";
 
 const NUMBER_OF_ITEMS = 9;
-const ITEMS_EACH_SIDE = 4;
+const ITEMS_EACH_SIDE = Math.floor(NUMBER_OF_ITEMS / 2);
 
 export default function Pagination({ pages, current, onChange }) {
   if (pages < 1) {
