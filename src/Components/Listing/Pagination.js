@@ -31,7 +31,7 @@ export default function Pagination({ pages, current, onChange }) {
     items.push(
       <li
         key={1}
-        onClick={() => onChange(1)}
+        onClick={() => current !== 1 && onChange(1)}
         className={`${current === 1 ? 'active' : ''}`}>
         {`1...`}
       </li>
@@ -48,7 +48,7 @@ export default function Pagination({ pages, current, onChange }) {
     items.push(
       <li
         key={a}
-        onClick={() => onChange(a)}
+        onClick={() => current !== a && onChange(a)}
         className={`${current === a ? 'active' : ''}`}>
         {a}
       </li>
@@ -59,7 +59,7 @@ export default function Pagination({ pages, current, onChange }) {
     items.push(
       <li
         key={pages}
-        onClick={() => onChange(pages)}
+        onClick={() => current !== pages && onChange(pages)}
         className={`${current === pages ? 'active' : ''}`}>
         ...{pages}
       </li>
