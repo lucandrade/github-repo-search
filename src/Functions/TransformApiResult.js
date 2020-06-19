@@ -1,6 +1,4 @@
-import { ITEMS_PER_PAGE } from "../Constants";
-
-const GITHUB_RESULT_LIMIT = 1000;
+import { GITHUB_RESULT_LIMIT, ITEMS_PER_PAGE } from "../Constants";
 
 export default function TransformApiResult({ items = [], total_count }) {
   const repos = items.map(i => ({

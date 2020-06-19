@@ -25,3 +25,5 @@ export const ORDER_OPTIONS = [
 ];
 
 export const ITEMS_PER_PAGE = 20;
+
+export const GITHUB_RESULT_LIMIT = 1000;
