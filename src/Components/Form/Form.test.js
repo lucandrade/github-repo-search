@@ -20,7 +20,7 @@ afterEach(() => {
   container = null;
 });
 
-it("Call the onSearch when the input is changed", () => {
+it("Call the onSearch when the input is changed", async () => {
   const onSearch = jest.fn();
 
   act(() => {
@@ -31,18 +31,18 @@ it("Call the onSearch when the input is changed", () => {
 
   fireEvent.change(input, { target: { value: 'the-value' }});
 
-  act(() => {
+  await act(async () => {
     jest.advanceTimersByTime(1000);
   });
 
   expect(onSearch).toHaveBeenCalledWith({
     query: 'the-value',
     sort: '',
-    order: 'asc',
+    order: 'desc',
   });
 });
 
-it("Call the onSearch when the sort is changed", () => {
+it("Call the onSearch when the sort is changed", async () => {
   const onSearch = jest.fn();
 
   act(() => {
@@ -51,16 +51,18 @@ it("Call the onSearch when the sort is changed", () => {
 
   const sortSelect = container.querySelector('#sort');
 
-  fireEvent.change(sortSelect, { target: { value: 'stars' } });
+  await act(async () => {
+    fireEvent.change(sortSelect, { target: { value: 'stars' } });
+  });
 
   expect(onSearch).toHaveBeenCalledWith({
     query: '',
     sort: 'stars',
-    order: 'asc',
+    order: 'desc',
   });
 });
 
-it("Call the onSearch when the order is changed", () => {
+it("Call the onSearch when the order is changed", async () => {
   const onSearch = jest.fn();
 
   act(() => {
@@ -69,11 +71,13 @@ it("Call the onSearch when the order is changed", () => {
 
   const orderSelect = container.querySelector('#order');
 
-  fireEvent.change(orderSelect, { target: { value: 'desc' } });
+  await act(async () => {
+    fireEvent.change(orderSelect, { target: { value: 'asc' } });
+  });
 
   expect(onSearch).toHaveBeenCalledWith({
     query: '',
     sort: '',
-    order: 'desc',
+    order: 'asc',
   });
 });
