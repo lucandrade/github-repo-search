@@ -18,6 +18,28 @@ afterEach(() => {
   container = null;
 });
 
+it("Disables the input when disabled is true", () => {
+  const onSelect = jest.fn();
+
+  act(() => {
+    render(
+      (
+        <Select
+          id="my-select"
+          label="Label"
+          disabled={true}
+          options={[]}
+          onSelect={onSelect} />
+      ),
+      container
+    );
+  });
+
+  const select = container.querySelector('#my-select');
+
+  expect(select.disabled).toBe(true);
+});
+
 it("Renders the select", () => {
   const onSelect = jest.fn();
 
@@ -35,6 +57,8 @@ it("Renders the select", () => {
   });
 
   const select = container.querySelector('#my-select');
+
+  expect(select.disabled).toBe(false);
 
   fireEvent.change(select, { target: { value: 'some-value' }});
 

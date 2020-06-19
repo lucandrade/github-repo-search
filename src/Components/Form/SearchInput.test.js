@@ -20,6 +20,25 @@ afterEach(() => {
   container = null;
 });
 
+it("Disables the input when disabled is true", () => {
+  const onSearch = jest.fn();
+  const ref = createRef();
+
+  act(() => {
+    render(
+      <SearchInput
+        disabled={true}
+        ref={ref}
+        query={""}
+        onSearch={onSearch} />,
+      container
+    );
+  });
+
+  const input = container.querySelector('input');
+  expect(input.disabled).toBe(true);
+});
+
 it("Renders the input", () => {
   const onSearch = jest.fn();
   const ref = createRef();
@@ -31,6 +50,8 @@ it("Renders the input", () => {
   expect(document.hasFocus()).toBe(false);
 
   const input = container.querySelector('input');
+
+  expect(input.disabled).toBe(false);
 
   fireEvent.keyDown(container, { keyCode: 191 });
 
