@@ -6,7 +6,7 @@ const instance = Axios.create({
   baseURL: 'https://api.github.com/search/repositories',
 });
 
-const fetch = async ({ query, sort, order }) => {
+const fetch = async ({ query, sort, order }, page = 1) => {
   try {
     const { data } = await instance.get('', {
       params: {
@@ -14,6 +14,7 @@ const fetch = async ({ query, sort, order }) => {
         q: query,
         sort,
         order,
+        page,
       },
     });
 

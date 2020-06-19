@@ -1,4 +1,6 @@
-export default function TransformApiResult({ items = [] }) {
+import { ITEMS_PER_PAGE } from "../Constants";
+
+export default function TransformApiResult({ items = [], total_count }) {
   const repos = items.map(i => ({
     name: i.name,
     description: i.description,
@@ -8,5 +10,7 @@ export default function TransformApiResult({ items = [] }) {
     forks: i.forks,
   }));
 
-  return { repos };
+  const pages = Math.ceil(total_count / ITEMS_PER_PAGE);
+
+  return { repos, pages };
 }
