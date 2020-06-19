@@ -1,5 +1,7 @@
 import { ITEMS_PER_PAGE } from "../Constants";
 
+const GITHUB_RESULT_LIMIT = 1000;
+
 export default function TransformApiResult({ items = [], total_count }) {
   const repos = items.map(i => ({
     name: i.name,
@@ -10,11 +12,8 @@ export default function TransformApiResult({ items = [], total_count }) {
     forks: i.forks,
   }));
 
-  let pages = Math.ceil(total_count / ITEMS_PER_PAGE);
-
-  if (pages > 50) {
-    pages = 50;
-  }
+  const total = total_count > GITHUB_RESULT_LIMIT ? GITHUB_RESULT_LIMIT : total_count;
+  const pages = Math.ceil(total / ITEMS_PER_PAGE);
 
   return { repos, pages };
 }
