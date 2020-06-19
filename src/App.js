@@ -37,7 +37,7 @@ export default function App() {
     <>
       <div className="app">
         <h1>GitHub Repository Listing</h1>
-        <Form onSearch={setOptions} />
+        <Form disabled={fetching} onSearch={setOptions} />
         {fetching && <div className="loading">Loading</div>}
         {!fetching && <Pagination pages={pages} current={page} onChange={setPage} />}
         <div className="list">
