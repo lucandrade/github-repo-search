@@ -10,25 +10,21 @@ const instance = Axios.create({
 });
 
 const fetch = async ({ query, sort, order }, page = 1) => {
-  try {
-    const { data } = await instance.get('', {
-      params: {
-        per_page: ITEMS_PER_PAGE,
-        q: query,
-        sort,
-        order,
-        page,
-      },
-    });
+  const { data } = await instance.get('', {
+    params: {
+      per_page: ITEMS_PER_PAGE,
+      q: query,
+      sort,
+      order,
+      page,
+    },
+  });
 
-    if (data && data.items) {
-      return data;
-    }
-
-    return {};
-  } catch (e) {
-    return {};
+  if (data && data.items) {
+    return data;
   }
+
+  return {};
 };
 
 export default fetch;

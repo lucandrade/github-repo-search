@@ -11,6 +11,7 @@ export default function App() {
   const [page, setPage] = useState(1);
   const [repos, setRepos] = useState([]);
   const [fetching, setFetching] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [options, setOptions] = useState({});
 
   useEffect(() => {
@@ -23,10 +24,17 @@ export default function App() {
     if (options.query) {
       const runFetch = async () => {
         setFetching(true);
-        const { repos, pages } = TransformApiResult(await Fetch(options, page));
-        setPages(pages);
-        setRepos(repos);
-        setFetching(false);
+        setFailed(false);
+
+        try {
+          const { repos, pages } = TransformApiResult(await Fetch(options, page));
+          setPages(pages);
+          setRepos(repos);
+        } catch (e) {
+          setFailed(true);
+        } finally {
+          setFetching(false);
+        }
       };
 
       runFetch();
@@ -39,6 +47,7 @@ export default function App() {
         <h1>GitHub Repository Listing</h1>
         <Form disabled={fetching} onSearch={setOptions} />
         {fetching && <div className="loading">Loading</div>}
+        {failed && <div className="loading">Error fetching github repositories</div>}
         {!fetching && <Pagination pages={pages} current={page} onChange={setPage} />}
         <div className="list">
           {repos.map(i =>  <Repository key={i.url} {...i} />)}
