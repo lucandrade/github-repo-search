@@ -19,12 +19,12 @@ const SORT_OPTIONS = [
 
 const ORDER_OPTIONS = [
   {
-    value: 'asc',
-    label: 'Ascending'
-  },
-  {
     value: 'desc',
     label: 'Descending'
+  },
+  {
+    value: 'asc',
+    label: 'Ascending'
   },
 ];
 
