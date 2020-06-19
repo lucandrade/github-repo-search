@@ -19,6 +19,10 @@ form {
 
     label {
       margin-bottom: .8rem;
+
+      &[disabled] {
+        color: rgba(255, 255, 255, .3);
+      }
     }
 
     input, select {
@@ -31,6 +35,11 @@ form {
       padding: .5rem;
       color: white;
       font-family: 'Roboto', sans-serif;
+
+      &:disabled {
+        color: rgba(255, 255, 255, .3);
+        border-color: rgba(255, 255, 255, .3);
+      }
 
       &::-webkit-input-placeholder {
         color: rgba(255, 255, 255, .8);

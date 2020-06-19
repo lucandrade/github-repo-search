@@ -1,17 +1,16 @@
-import React, { createRef, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const SECONDS_TO_WAIT = 1000;
 
-export default function SearchInput({ onSearch }) {
-  const [value, setValue] = useState('');
-  const inputRef = createRef();
+function SearchInput({ query, disabled, onSearch }, ref) {
+  const [value, setValue] = useState(query);
   const fakeRef = useRef(true);
 
   useEffect(() => {
     const onKeyDown = (e) => {
       // Focus the input when "/" key is pressed
-      if (e.keyCode === 191 && inputRef.current) {
-        inputRef.current.focus();
+      if (e.keyCode === 191 && ref.current) {
+        ref.current.focus();
         e.preventDefault();
       }
     };
@@ -19,7 +18,7 @@ export default function SearchInput({ onSearch }) {
     document.body.addEventListener('keydown', onKeyDown);
 
     return () => document.body.removeEventListener('keydown', onKeyDown);
-  }, [inputRef]);
+  }, [ref]);
 
   useEffect(() => {
     // Do not run when it's mounted
@@ -37,9 +36,10 @@ export default function SearchInput({ onSearch }) {
 
   return (
     <div className="form-input search">
-      <label htmlFor="search">Search</label>
+      <label htmlFor="search" disabled={disabled}>Search</label>
       <input
-        ref={inputRef}
+        ref={ref}
+        disabled={disabled}
         type="text"
         id="search"
         value={value}
@@ -48,3 +48,5 @@ export default function SearchInput({ onSearch }) {
     </div>
   );
 }
+
+export default React.forwardRef(SearchInput);

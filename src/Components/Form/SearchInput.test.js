@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import { fireEvent } from "@testing-library/react";
@@ -22,9 +22,10 @@ afterEach(() => {
 
 it("Renders the input", () => {
   const onSearch = jest.fn();
+  const ref = createRef();
 
   act(() => {
-    render(<SearchInput onSearch={onSearch} />, container);
+    render(<SearchInput ref={ref} query={""} onSearch={onSearch} />, container);
   });
 
   expect(document.hasFocus()).toBe(false);
