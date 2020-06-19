@@ -1,32 +1,8 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
+
 import SearchInput from "./SearchInput";
 import Select from "./Select";
-
-const SORT_OPTIONS = [
-  {
-    value: '',
-    label: 'Best Match'
-  },
-  {
-    value: 'stars',
-    label: 'Stars'
-  },
-  {
-    value: 'forks',
-    label: 'Forks'
-  },
-];
-
-const ORDER_OPTIONS = [
-  {
-    value: 'desc',
-    label: 'Descending'
-  },
-  {
-    value: 'asc',
-    label: 'Ascending'
-  },
-];
+import { ORDER_OPTIONS, SORT_OPTIONS } from "../../Constants";
 
 export default function Form({ onSearch }) {
   const [query, setQuery] = useState('');
