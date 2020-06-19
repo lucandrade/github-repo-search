@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SearchInput from "./SearchInput";
 import Select from "./Select";
 
@@ -28,25 +28,39 @@ const ORDER_OPTIONS = [
   },
 ];
 
-export default function Form() {
+export default function Form({ onSearch }) {
+  const [query, setQuery] = useState('');
+  const [sort, setSort] = useState(SORT_OPTIONS[0].value);
+  const [order, setOrder] = useState(ORDER_OPTIONS[0].value);
+  const fakeRef = useRef(true);
+
+  useEffect(() => {
+    // Do not run when it's mounted
+    if (fakeRef.current) {
+      fakeRef.current = false;
+    } else {
+      onSearch({ query, sort, order });
+    }
+  }, [fakeRef, query, sort, order, onSearch]);
+
   const onSubmit = e => {
     e.preventDefault();
-    console.log('submit');
+    onSearch({ query, sort, order });
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <SearchInput onSearch={query => console.log('e', query)} />
+      <SearchInput onSearch={setQuery} />
       <Select
         id="sort"
         label="Sort"
         options={SORT_OPTIONS}
-        onSelect={option => console.log('option', option)} />
+        onSelect={setSort} />
       <Select
         id="order"
         label="Order"
         options={ORDER_OPTIONS}
-        onSelect={option => console.log('option', option)} />
+        onSelect={setOrder} />
     </form>
   );
 }
