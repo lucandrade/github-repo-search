@@ -10,7 +10,11 @@ export default function TransformApiResult({ items = [], total_count }) {
     forks: i.forks,
   }));
 
-  const pages = Math.ceil(total_count / ITEMS_PER_PAGE);
+  let pages = Math.ceil(total_count / ITEMS_PER_PAGE);
+
+  if (pages > 50) {
+    pages = 50;
+  }
 
   return { repos, pages };
 }
